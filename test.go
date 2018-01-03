@@ -22,7 +22,7 @@ func main() {
 	}
 
 	go func() {
-		<-time.After(50 * time.Millisecond)
+		<-time.After(100 * time.Millisecond)
 		cancel()
 	}()
 
@@ -37,6 +37,8 @@ func main() {
 				log.Println(err)
 				return
 			}
+
+			defer rows.Close()
 
 			for rows.Next() {
 				var email string
